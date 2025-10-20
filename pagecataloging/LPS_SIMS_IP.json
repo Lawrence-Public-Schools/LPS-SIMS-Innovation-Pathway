@@ -6,7 +6,7 @@
 	  "version": "24.10.1.1",
 	  "contextType": "student",
 	  "requiredContext": "student",
-	  "sortOrder": 1100,
+	  "sortOrder": 1010,
 	  "pageURL": "/admin/students/LPS-innovationpathway.html?frn=~(studentfrn)",
 	  "parentHTMLID": "navUSA_MAStudent"
 	}
