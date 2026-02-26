@@ -109,7 +109,7 @@
     ~[if#cond4.security.fieldLevel=S_MA_STU_SIMS_X.InnovCareerPathwaySector=FullAccess]
     <td>&nbsp;</td>
     <td>
-        <div class="feedback-alert" id="DOE057Feedback"> DOE045 is selected as 01 or 04. DOE057 cannot be selected as 500. </div>
+        <div class="feedback-alert" id="DOE057Feedback" style="display:none;"> DOE045 is selected as 01 or 04. DOE057 cannot be selected as 500. </div>
     </td>
     [/if#cond4]
 </tr>
@@ -2104,17 +2104,22 @@ function checkStateStuNum(ele) {
 </script>
 <script>
 		var DOE047TextBox = document.getElementById('ircodes1');
-		DOE047TextBox.addEventListener('input', function() {
-		var inputValue = this.value;
-        if (inputValue.length === 3) {
-			DOE047TextBox.blur();
-			DOE047TextBox.focus();
-            }
-		});
+		if (DOE047TextBox) {
+			DOE047TextBox.addEventListener('input', function() {
+				var inputValue = this.value;
+				if (inputValue.length === 3) {
+					DOE047TextBox.blur();
+					DOE047TextBox.focus();
+				}
+			});
+		}
 
 		function validateDOE047() {
 		var inputircodes1 = document.getElementById("ircodes1");
         var warningElement = document.getElementById('warning_message');
+		if (!inputircodes1 || !warningElement) {
+			return;
+		}
         var validValues = ['','025','026','114','121','149','150','187'];
 		var inputValue = inputircodes1.value;
         if (!validValues.includes(inputValue)) {
@@ -2125,8 +2130,12 @@ function checkStateStuNum(ele) {
     };
 
 	window.onload = function() {
-        var inputircodes1 = document.getElementById("ircodes1").value;
+		var inputElement = document.getElementById("ircodes1");
 	    var warningElement = document.getElementById('warning_message');
+		if (!inputElement || !warningElement) {
+			return;
+		}
+        var inputircodes1 = inputElement.value;
         var validIrcodes1Values = ['','025','026','114','121','149','150','187'];
         if (!validIrcodes1Values.includes(inputircodes1)) {
         warningElement.textContent = "Warning: Invalid safety certification selected";
